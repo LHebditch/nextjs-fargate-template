@@ -9,9 +9,9 @@ resource "docker_image" "app" {
 }
 
 module "container" {
-  source     = "github.com/LHebditch/terraform-fargate-module?ref=9ad334"
+  source     = "github.com/LHebditch/terraform-fargate-module"
   cluster_id = ""
-  name       = "LHTEST"
+  name       = "test"
   tags = {
     "env" : "dev"
   }
@@ -25,11 +25,10 @@ module "container" {
   container_image = docker_image.app.image_id
   task_count      = 1
   security_groups = [
-    "sg-b8366cf4"
+    "sg..."
   ]
   subnets = [
-    "subnet-004e6b66",
-    "subnet-708aed2a"
+    "subnet..."
   ]
   assign_public_ip   = true
   role_arn           = aws_iam_role.ecs_task_role.arn
